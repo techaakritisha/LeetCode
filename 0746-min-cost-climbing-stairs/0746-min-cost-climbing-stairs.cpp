@@ -1,15 +1,21 @@
 class Solution {
 public:
-    int dp[1001];
-    int help(int i, vector<int>& cost){
-        if(i >= cost.size()) return 0;
-        if(dp[i] != -1) return dp[i];
-        int op1 = help(i+1,cost);
-        int op2 = help(i+2,cost);
-        return dp[i] = min(op1,op2)+cost[i];
+    int t[1001];
+    int solve(int i , vector<int> &cost) {
+        if(i >= cost.size()){
+            return 0;
+        }
+        
+        if(t[i] != -1) 
+             return t[i];
+        
+        int op1 = solve(i+1,cost);
+        int op2 = solve(i+2,cost);
+        
+        return t[i] = min(op1,op2)+cost[i];
     }
     int minCostClimbingStairs(vector<int>& cost) {
-         memset(dp,-1,sizeof(dp));
-         return min(help(0,cost) , help(1,cost));
+         memset(t,-1,sizeof(t));
+         return min(solve(0,cost),solve(1,cost));
     }
 };
