@@ -40,7 +40,7 @@ public:
             
             int m = word1.length();
             int n = word2.length();
-            vector<vector<int>> t(m+1,vector<int>(n+1,0));
+            vector<vector<int>> t(m+1,vector<int>(n+1,-1));
                 
             for(int i=0; i<=m; i++) {
                 for(int j=0; j<=n; j++) {
