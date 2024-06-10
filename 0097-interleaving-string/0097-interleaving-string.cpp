@@ -1,37 +1,39 @@
 class Solution {
 public:
-    int t[102][102];
-    bool solve(string &s1,string &s2,string &s3, int n, int m , int k) {
-         if(k<0){
+    int n , m , l;
+    int t[101][101][201];
+    bool solve(int i, int j , int k , string &s1 , string &s2 , string &s3) {
+        if(i==n && j == m && k==l)
             return true;
+        
+        if(k >= l)
+            return false;
+        
+        if(t[i][j][k] != -1)
+            return t[i][j][k];
+        
+        bool result = false;
+        
+        if(i<n && s1[i] == s3[k]) {
+            result =  solve(i+1,j,k+1,s1,s2,s3);
         }
         
-        if(t[n+1][m+1] != -1)
-             return t[n+1][m+1];
+        if(result == true)
+            return t[i][j][k] = result;
         
-        bool a1 = false,a2=false;
-        
-        if(n>=0 && s1[n]==s3[k]){
-            a1 = solve(s1,s2,s3,n-1,m,k-1);
+        if(j<m && s2[j] == s3[k]){
+            result = solve(i,j+1,k+1,s1,s2,s3);
         }
-
-        if(m>=0 && s2[m]==s3[k]){
-            a2 = solve(s1,s2,s3,n,m-1,k-1);
-        }
-
-        return t[n+1][m+1] = a1||a2;
-        
+         
+        return t[i][j][k] = result;    
     }
     bool isInterleave(string s1, string s2, string s3) {
-        int n = s1.size();
-        int m = s2.size();
-        int k = s3.size();
+       n = s1.length();
+       m = s2.length();
+       l = s3.length();
         
-        if(k != n+m)
-             return false;
+      memset(t,-1,sizeof(t));  
         
-        memset(t,-1,sizeof(t));
-        
-       return solve(s1,s2,s3,n-1,m-1,k-1);
+      return solve(0,0,0,s1,s2,s3);
     }
 };
