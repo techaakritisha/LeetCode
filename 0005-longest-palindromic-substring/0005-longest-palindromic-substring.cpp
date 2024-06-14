@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int t[1001][1001];
+   int t[1001][1001];
     
     bool solve(string &s, int l, int r){
         if(l >= r) 
@@ -17,7 +17,7 @@ public:
         return t[l][r] = false;
     }
     string longestPalindrome(string s) {
-     int n = s.length();
+             int n = s.length();
         
         int maxlen = INT_MIN;
         int startingIndex = 0;
