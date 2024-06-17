@@ -17,7 +17,7 @@ public:
         return t[l][r] = false;
     }
     string longestPalindrome(string s) {
-             int n = s.length();
+        int n = s.length();
         
         int maxlen = INT_MIN;
         int startingIndex = 0;
