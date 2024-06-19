@@ -1,6 +1,6 @@
 class Trie {
 public:
-    
+    /*
     struct trieNode{
         bool end;
         trieNode* child[26];
@@ -14,6 +14,7 @@ public:
         for(int i=0; i<26; i++){
             newNode->child[i] = NULL;
         }
+        
         return newNode;
     }
     
@@ -73,7 +74,84 @@ public:
              return true;
         
         return false;
+    }'
+        
+        */
+    
+    struct trieNode{
+        bool end;
+        trieNode* children[26];
+    };
+    
+    trieNode* getNode(){
+        trieNode* newNode = new trieNode();
+        
+        for(int i=0; i<26; i++) {
+           newNode->children[i] = NULL;   
+        }
+        
+        return newNode;
     }
+    
+    trieNode* root;
+    
+    Trie() {
+          root = getNode();   
+    }
+    
+    void insert(string word) {
+        trieNode* copy = root;
+        
+        for(int i=0; i<word.length(); i++) {
+           int idx = word[i]-'a';
+            
+           if(copy->children[idx] == NULL){
+               copy->children[idx] = getNode();
+           }
+        
+            copy = copy->children[idx];
+        }
+      copy->end = true;
+    }
+    
+    bool search(string word) {
+       
+        trieNode* copy = root;
+        
+        for(int i=0; i<word.length(); i++) {
+           int idx = word[i]-'a';
+            
+           if(!copy->children[idx]){
+               return false;
+           }
+           copy = copy->children[idx];
+        }
+     
+        if(copy != NULL && copy->end == true)
+             return true;
+       
+        return false;
+    }    
+    
+    bool startsWith(string prefix) {
+        
+        trieNode* copy = root;
+        int i = 0;
+        
+        for(i=0; i<prefix.length(); i++) {
+           int idx = prefix[i]-'a';
+            
+           if(!copy->children[idx]){
+               return false;
+           }
+           copy = copy->children[idx];
+        }
+     
+        if(i == prefix.length())
+             return true;
+       
+        return false;
+    }                
 };
 
 /**
