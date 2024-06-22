@@ -5,7 +5,7 @@ public:
        
         int n = nums.size();
         int curr = 0;
-        mp[curr] = 1;
+        mp[0] = 1;
         int count = 0;
         
         for(int i=0; i<n; i++){
