@@ -57,6 +57,10 @@ public:
             return maxd;  
        }
        
+        if(n < d) {
+           return -1;
+       }
+       
        if(t[i][d] != -1)
               return t[i][d];
        
@@ -75,10 +79,7 @@ public:
    }
    int minDifficulty(vector<int>& jd, int d) {
        n = jd.size();
-          
-      if(n < d) {
-           return -1;
-       }
+         
        memset(t,-1,sizeof(t));
        return solve(0,d,jd);
    }   
