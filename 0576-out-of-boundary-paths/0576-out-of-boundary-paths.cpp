@@ -22,7 +22,7 @@ public:
             
             result = (result + solve(new_i , new_j , k-1))%mod;
         }
-        return t[i][j][k] = result;
+        return t[i][j][k] = result%mod;
     }
     int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
         M = m;
