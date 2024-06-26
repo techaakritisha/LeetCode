@@ -90,7 +90,6 @@ public:
                 
                 if(isSafe(newx,newy) && grid[newx][newy] == 0 && d+dist < result[newx][newy]) {
                     pq.push({d+dist,{newx,newy}});
-                    grid[newx][newy] = 1;
                     result[newx][newy] = d+dist;
                     
                 }
