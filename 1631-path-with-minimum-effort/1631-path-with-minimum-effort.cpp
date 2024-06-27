@@ -6,7 +6,14 @@ public:
         int m = heights.size();
         int n = heights[0].size();
         
-        vector<vector<int>> result(m,vector<int>(n,INT_MAX));
+        int result[m][n];
+        
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                result[i][j] = INT_MAX;
+            }
+        }
+        // vector<vector<int>> result(m,vector<int>(n,INT_MAX));
         
         priority_queue<p,vector<p>,greater<p>> pq;    
         
@@ -14,7 +21,7 @@ public:
         result[0][0] = 0;
         
         auto isSafe = [&](int x, int y){
-            return x>=0 && x<m && y>=0 && y<n ;
+            return (x>=0 && x<m && y>=0 && y<n) ;
         };
         
         
